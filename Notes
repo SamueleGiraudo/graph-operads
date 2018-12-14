@@ -44,6 +44,11 @@ Number of multigraphs by weight:
     1, 2, 5, 14, 43, 143, 510,
 (A098569)
 
+Basis changes:
+For any multigraph G, let H_G be the sum of all the multigraphs obtained
+by removing an arbitrary number of edges from G.
+The set of all the H_G forms a basis of MG. Nevertheless, the partial
+composition on this basis is not nice (negative integer coefficients).
 
 = Generating set =
 First candidate:
