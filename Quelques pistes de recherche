@@ -1,0 +1,8 @@
+- ensemble minimal de générateurs de l'opérade MG des multigraphes ;
+- description de la catégorie des algèbres sur MG (opérations + relations) ;
+- description de sous-opérades de MG engendrées par un nombre fini de graphes (description des graphes obtenus) ;
+- réalisations polynomiales des opérades de graphes ;
+- changements de base de MG en vue de simplifier sa composition partielle ;
+- définitions de quotients de MG (de deux types : par des idéaux de la forme G - G' = 0, ou bien G = 0) ;
+- définitions de sous-opérades de MG (de deux types : par des sommes de graphes vérifiant une propriété commune, ou bien par stabilité de la composition partielle sur des familles de graphes particulières) ;
+- retrouver l'opérade pré-Lie comme sous-structure (sous-opérade et/ou quotient) de MG ou de l'une de ses généralisations (la plus simple possible).
