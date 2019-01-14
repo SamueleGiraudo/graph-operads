@@ -55,9 +55,10 @@ A \textit{morphism} between vector (resp set) species is a natural transformatio
 More informally, a \textit{morphism} $f: R\rightarrow S$ between vector (resp set) species is a collection of linear maps (resp maps) $f_V : R[V] \rightarrow S[V]$ satisfying the naturality axiom: for each bijection $\sigma: V\rightarrow V'$, $f_{V'}\circ R[\sigma] = S[\sigma]\circ f_V$.
 
 We note $\mathcal{L}$ the functor from set species to vector species defined by $L(S)[V] = \Bbbk S[V]$, where $\Bbbk S[V]$ is the free $\Bbbk$ vector space on $S[V]$, and $L(f)_V$ the linear extension of $f$. We will also note $\Bbbk S$ for $\mathcal{L}(S)$.
+For any set species $S$, $\Bbbk S[V]$ is naturally equipped with a scalar product $\langle ., .\rangle_{S[V]}$ by considering $S[V]$ as an orthonormal basis. For $x\in\Bbbk S[V]$ we note $\text{Supp}(x) = \{y\in S[V]\,|\, \langle x, y\rangle_{S[V]} > 0\}$ the support of $x$. 
 \end{definition}
 
-We will use the term species to refer to vector species. For $S$ a species, $V$ a set and $f$ a morphism from $S$ we will note $f$ instead of $f_V$ when no confusion is possible.
+We will use the term species to refer to vector species. For $S$ a species, $V$ a set and $f$ a morphism from $S$ we will note $f$ instead of $f_V$ when no confusion is possible. We will also forget the indices on scalar product and always note $\langle ., .\rangle$.
 
 We note $1$ the set species defined by $1[V] = \{\emptyset\}$ if $V=\emptyset$ and $1[V] = \emptyset$ else; as well as $X$ the set species defined by $X[V] = \{v\}$ if $V=\{v\}$ and $X[V] = \emptyset$ else.
 
@@ -69,7 +70,7 @@ Let $R$, $S$, $R'$ and $S'$ be four species and $f:R\rightarrow R'$ and $g:S\rig
 \item The \textit{sum} of $R$ and $S$ is the species $R+ S$ defined by $(R+S)[V] = R[V]\oplus S[V]$ for all finite set $V$ and $(R+S)[\sigma]|_{R[V]} = R[\sigma]$ and $(R+ S)[\sigma]|_{S[V]} = S[\sigma]$ for all finite sets $V,V'$ and bijections $\sigma: V\rightarrow V'$.
 
 The \textit{sum} of $f$ and $g$ is the morphism $f+ g: R +S\rightarrow R'+ S'$ defined by $(f+g)_V = f_V\oplus g_V$.
-\item The \textit{product} of $R$ and $S$ is the species $R\cdot S$ defined by $R\cdot S[V] = \bigoplus_{V_1\sqcup V_2 = V} R[V_1]\otimes S[V_2]$ and $R\cdot S[\sigma] = \bigoplus_{V_1\sqcup V_2 = V} R[\sigma|_{V_1}]\otimes S[\sigma|_{V_2}]$.
+\item The \textit{product} of $R$ and $S$ is the species $R\cdot S$ defined by $R\cdot S[V] = \bigoplus_{V_1\sqcup V_2 = V} R[V_1]\otimes S[V_2]$ and $R\cdot S[\sigma] = \bigoplus_{V_1\sqcup V_2 = V} R[\sigma|_{V_1}]\otimes S[\sigma|_{V_2}]$.
 
 The \textit{product} of $f$ and $g$ is the morphism $f\cdot g: R\otimes S\rightarrow R'\otimes S'$ defined by $(f\cdot g)_V = \bigoplus_{V_1\sqcup V_2 = V}f_{V_1}\otimes g_{V_2}$.
 \item The \textit{Hadamard product} of $R$ and $S$ is the species $R\times S$ defined by $(R\times S)[V] = R[V]\otimes S[V]$ (resp $R[V]\times S[V]$) and $(R\times S)[\sigma] = R[\sigma]\otimes S[\sigma]$ (resp $R[\sigma]\times S[\sigma]$).
@@ -89,7 +90,7 @@ We have the same definition on set species by replacing direct sum of vector spa
 Note that we stated these were species and morphisms without checking that these definition were functional and natural. Those verifications can be found in (ref...). These definitions are compatible with $\mathcal{L}$ i.e $\mathcal{L}(R+S) = \mathcal{L}(R)+\mathcal{L}(S)$, $\mathcal{L}(f+g) = \mathcal{L}(f)+\mathcal{L}(g)$, $\mathcal{L}(R\cdot S) = \mathcal{L}(R)\cdot \mathcal{L}(S)$ etc.
 
 
-% In the following, in order to avoid confusions when referring to ghost element, we will consider a slightly different product of species: $D^nR\otimes D^mS[V] = \bigoplus_{V_1\sqcup V_2 = V} D^nR[V_1]\otimes S[\sigma_{V_2}]D^mS[V_2]$ where $\sigma_{V_2}$ is the identity on $V_2$ and sends $\ast_i$ on $\ast_{i+m}$ for $i\in [n]$.
+
 
 When no confusion is possible we will note $S$ instead of $\id_S$.
 
@@ -149,30 +150,21 @@ Then $\op$ has an operad structure $(\op,\eta,e)$ uniquely determined by $\circ_
 
 Let $V$ be a set. A \textit{multiset} $m$ over $V$ is a set of couples $\{(v,m(v))\,|\, v\in V\}$ in $V\times\mathbb{N}^*$. We call $V$ the domain of $m$ and note $D(m)=V$. We say that $v$ is in $m$ and note $v\in m$ if $v\in D(m)$. For any element $v$ not in the domain of $m$, we note $m(v) = 0$.
 
-We note $\m(V)$ the set of multisets with domain in $\p(V)$, $\m_k(V)$ the set of elements of $\m(V)$ of cardinality $k$ (the cardinality of a multiset $m$ over $V$ being $\sum_{v\in V} m(v)$) and $\m(V)^*$ the set of multisets with domain in $\p(V)^* = \p(V)\setminus\{\emptyset\}$. We indentify sets with multisets constant equal to 1.
+We note $\m(V)$ the set of multisets with domain in $\p(V)$, $\m_k(V)$ the set of elements of $\m(V)$ of cardinality $k$ (the cardinality of a multiset $m$ over $V$ being $\sum_{v\in V} m(v)$) and $\m(V)^*$ the set of multisets with domain in $\p(V)^* = \p(V)\setminus\{\emptyset\}$. We identify sets with multisets constant equal to 1.
 
-%In addition to the usual way to represent maps, we also use two different notations for subsets: the set notation and the couple notation. For example the multiset $m$ over $\{a,b,c\}$ defined by $m(a) = 2$, $m(b) = 1$ and $m(c)=2$ will also be noted as $\{a,a,b,c,c\}$ or $\{(a,2),(b,1),(c,2)\}$. We will say that $v$ is an element of $m$ and $v \in m$ if $v\in D(m)$, with $D(m)$ the domain of $m$.
 
-%Note $\p_k(V_1)$ the set of subsets of cardinality $k$ of $V_1$ and $\m_k(V_1)$ the set of multisets of cardinality $k$ (the cardinality of a multiset $m$ over $V_1$ being $\sum_{v\in V_1} m(v)$) as well as $\p(V_1)^* = \p(V_1)\setminus\{\emptyset\}$ and $\m(V_1)^* = \m(V_1)\setminus\{\emptyset\}$.
-%We note $Dec_k(m)$ the set of decomposition of lenght 2 of $m$.
-
-% Let $m_1$ and $m_2$ be two multisets and $V$ a set.
-% \begin{itemize}
-% \item We note $m_1\oplus m_2$ the multiset over $D(m_1)\cup D(m_2)$ defined by $m_1\oplus m_2(v) = m_1(v) + m_2(v)$ (where we define $m_i(v) = 0$ if it is not already defined).
-% \item We note $m_1\cap V$ the multiset over $D(m)\cap V$ defined by $m_1\cap V(v)= m_1(v)$ for $v\in D(m)\cap V$.
-% \end{itemize}
 For $m$ a multiset and $V$ a set, we note $m\cap V = m\cap V\times\mathbb{N}^*$. If $m'$ is an other multiset, we call the union of $m$ and $m'$ the multiset $\{(v,m(v)+m'(v))\,|\, v\in D(m)\cup D(m')\}$ where $m(v) = 0$ if $v\not in D(m)$ and $m'(v) = 0$ if $v\not \in D(m')$.
 A \textit{decomposition} of a mutliset $m$ is a tuple of multisets $(m_1,\dots, m_k)$ such that $\bigcup D(m_i) = D(m)$ and $m(v) = m_i(v)$ for all $v\in D(m)$.
 
 \begin{definition}
-Let $V$ de a set. A \textit{multi-hypergraph} over $V$ is a multiset with domain in $\m(V)^*$. In this context the elements of $V$ are called \textit{vertices}, the elements of a multi-hypergraphs are called \textit{edges} and the elements of an edge are called its \textit{ends}. A vertex contained in the domain of no edge is called \textit{isolated vertex}. We note $MHG$ the set species of multi-hypergraphs.
+Let $V$ be a set. A \textit{multi-hypergraph} over $V$ is a multiset with domain in $\m(V)^*$. In this context the elements of $V$ are called \textit{vertices}, the elements of a multi-hypergraphs are called \textit{edges} and the elements of an edge are called its \textit{ends}. A vertex contained in the domain of no edge is called \textit{isolated vertex}. We note $MHG$ the set species of multi-hypergraphs.
 
 A \textit{hypergraph} is a multi-hypergraph whose edges are sets. A \textit{mutltigraph} is a multi-hypergraph whose edges have cardinality 2. A \textit{graph} is a multi-hypergraph which is a hypergraph and a multigraph at the same time. Note $MHG$, $HG$, $MG$ and $G$ the set species corresponding to these structures.
 
- An \textit{orientation} of a multi-hypergraph $h$ is given by a decomposition of size 2 $(e_s,e_t)$ for each edge $e\in h$. The elements of $e_s$ and $e_t$ are respectively called \textit{source ends} and \textit{target ends} of $e$. An \textit{oriented multi-hypergraph} (resp \textit{oriented hypergraph}, \textit{oriented multigraph}, \textit{oriented graph}) is a multi-hypergraph (resp hypergraph, multigraph, graph) with an orientation. An oriented multi-hypergraph over $V$ can also be seen as a multiset with domain in $(\m(V)^*)^2$. The elements of an oriented multi-hypergraph are then called oriented edges.
+We will also note $F$ the species of forests, which is a subspecies of $G$.
 \end{definition}
 
-In contrast with the standard definition, here the sole difference between graphs and multigraphs is that multigraphs can have loops while graphs no; but in both case we accept repetition of edges. The notion of orientation for a graph also differs from the usual one where each edge has exactly one source and one target.
+In contrast with the standard definition, here the sole difference between graphs and multigraphs is that multigraphs can have loops while graphs no; but in both case we accept repetition of edges.
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=1.5]{fig/he1}
@@ -198,23 +190,16 @@ In contrast with the standard definition, here the sole difference between graph
 We represented the three edges $\{(1,1),(2,1),(3,1)\}$, $\{(1,2),(2,1)\}$ and $\{(1,3)\}$ in Figure \ref{e3} and the multi-hypergraph $$\{(\{(a,2),(b,1),(d,1)\},1),(\{(b,1),(c,1),(e,1)\},1),(\{e,4\},1),(\{(e,1),(f,1)\},1),(\{(d,1),(e,1)\},2)\}$$ over $\{a,b,c,d,e,f,g\}$ in Figure \ref{mhg}.
 \end{example}
 
-Let $S$ one of the set species $HMG$, $HG$, $MG$ or $G$. We note $S_c$ the set subspecies of $S$ of connected elements, $S_{or}$ the set species of oriented elements and $S_{orc}$ the set subspecies of $S_{or}$ of connected elements. We note $F$ the set species of forest, $T=F_c$ the set species of trees, $F_{or}$ the set species of oriented forest, $T_{or}$ the set species of oriented trees and $A$ the set species of rooted trees.
-
-% Given a set species $S$ the \textit{pointing of $S$} is the set species $S^{\bullet}$ given by $S^{\bullet}[V] = S[V]\times V$. Given $(h,r)\in MHG_c^{\bullet}$, we have a canonical orientation of $h$ defined iteravely as follow.
-% \begin{itemize}
-% \item For each edge $e$ containing $r$ the domain $D(e_t)$ of $e_t$ is $\{r\}$ and $e_t(r) = e(r)$.
-% \item For each edge $e$ not already oriented containing vertices which are in an oriented edge, let $V$ be this set of vertices. Then $D(e_t) = V$ and $e_t(v) = e(v)$.
-% \end{itemize}
-% Remark that if $h$ is a tree, this gives us the rooted tree with root $r$ and underlying tree $h$. We note $O_r(h)$ the oriented multi-hypergraph thus obtained and $O$ the morphism $HMG_c^{\bullet} \rightarrow HMG_{orc}^{\bullet}: (h,r) \mapsto (O_r(h),r)$.
-
-% $\Bbbk G[V]$ is naturally equipped with a scalar product $\langle,\rangle_V$ defined by $\langle g_1, g_2\rangle_V = \delta_{g_1,g_2}$ for $g_1,g_2\in G[V]$. In the following we will omit the $V$ index and note $\langle,\rangle$
 
 
 \section{Augmented multi-hypergraphs}
 
 \begin{definition}
-Let $A$ be a set and $V$ a finite set. An \textit{$A$-augmented edge over $V$} is an element of $\m(V\times A)$ and an \textit{$A$-augmented multi-hypergraph over $V$} is a multiset of $A$-augmented edges. Note $A\text{-}MHG$ the set species of $A$-augmented multi-hypergraphs.
+Let $A$ be a set and $V$ a finite set. An \textit{$A$-augmented end over $V$} is an element $(v,a)$ in $V\times A$, we call $v$ the vertex of the end and $a$ the augmentation of the end. An \textit{$A$-augmented edge over $V$} is multiset of $A$-augmented end over $V$ and an \textit{$A$-augmented multi-hypergraph over $V$} is a multiset of $A$-augmented edges. Note $A\text{-}MHG$ the set species of $A$-augmented multi-hypergraphs.
 \end{definition}
+
+
+The forgetful functor $U:A\text{-}MHG \rightarrow MHG$ is defined by sending any $A$-augmented end $(v,a)$ of a $A$-augmented edges of a $A$-augmented multi-hypergraph on the end $v$. Given an edge $e$ over $V$, an $A$-augmentation of this edge is an $A$-augmented edge $e'$ over $V$ such that $U_V(e') = e$. Given a multi-hypergraph $h$, an $A$-augmentation of this multi-hypergraph is then a $A$-augmented multi-hypergraph $g'$ over $V$ such that $U_V(h') = h$.
 
 \begin{example}
 ...
@@ -225,7 +210,7 @@ Let $A$ be a set and $V$ a finite set. For $a\in A$ and $V\in v$, we will note:
 \item $v_a = (a,v)$ for $v\in V$ and $a\in A$,
 \item $\prod_{(v,a)\in e} v_a^{e((v,a))}$ for an $A$-augmented edge $e$ over $V$,
 \item $\emptyset_V$ the empty $A$-augmented multi-hypergraph over $V$,
-\item $\bigoplus_{e_i\in h}e_i^{\oplus h(e_i)}$ for an $A$-augmented multi-hypergraph $h$.
+\item $\bigoplus_{e_i\in h}h(e_i)e_i$ for an $A$-augmented multi-hypergraph $h$.
 \end{itemize}
 With these notations we can see $A$-augmented edges over $V$ as monomials on the set of variables $\{v_a\,|\, v\in V,  a\in A\}$ and non empty $A$-augmented multi-hypergraphs over $V$ as polynomials with positive integer coefficients on the same set of variables. The binary operation $\oplus$ over $A$-augmented multi-hypergraphs can then be interpreted as the union of multisets of edges or the sum over polynomials. Note that we used $\oplus$ for the sum of polynomials / union of multisets such as to not confuse it with the $+$ of $\Bbbk A\text{-}MHG[V]$. In this context, the sum of polynomials $\oplus$ and the product of polynomials $\cdot$ are distributive over the sum of vectors $+$.
 
@@ -236,7 +221,7 @@ With these notations we can see $A$-augmented edges over $V$ as monomials on the
 Note $V = \{v_1,\dots, v_n\}$ and $A=\{a_1, a_2, \dots\}$. Let be $h\in A\text{-}MHG[V]$, $1\leq i_1 <\dots < i_k\leq n$ be $k\leq n$ integers, $V'$ be a finite set disjoint of $V$ and for every $1\leq j\leq k$, $a\in A$, $\emptyset\subsetneq V_{j,a} \subseteq V'$. We note $h|_{\{ {v_{i_j}}_a \leftarrow V_{j,a}\}_{1\leq j\leq k, a\in A}}$ the substitution of every $v_{i_j}\in V$ by $\sum_{v\in V_{j,a}} v_a$ in the polynomial $h$, i.e: $$h(\dots, v_{i_1a_1},\dots, v_{i_ja_1},\dots)|_{\{ v_{i_ja} \leftarrow V_{j,a}\}_{1\leq j\leq k, a\in A}} = h(\dots, \sum_{v\in V_{1,a_1}} v_{a_1}, \dots, \sum_{v\in V_{j,a_1}} v_{a_1}, \dots).$$
 In the case of the empty $A$-augmented multi-hypergraphs over $V$ we note $\emptyset_V|_{\{ {v_{i_j}}_a \leftarrow V_{j,a}\}_{1\leq j\leq k, a\in A}} = \emptyset_{V\setminus\{v_{i_j}\}_{1\leq j\leq k}}$.
 
-We note $\mathcal{F}_A$ the set of maps from $A$ to $\mathcal{P}\setminus\{\emptyset\}$.
+We note $\mathcal{F}_A[V]$ the set of maps from $A$ to $\mathcal{P}\setminus\{\emptyset\}$.
 Let $V_1$ and $V_2$ be two finite disjoint sets. For $(h_1,f_1)\in (A\text{-}MHG\times \mathcal{F}_A)'[V_1]$ and  $(h_2,f_2)\in (A\text{-}MHG\times \mathcal{F}_A)[V_2]$ we define the element of $\Bbbk((A\text{-}MHG\times\mathcal{F}_A)[V_1+V_2]$:
 $$ (h_1,f_1)\circ_{\ast}(h_2,f_2) = \left(h_1|_{\{\ast_a\leftarrow f_2(a)\}_{a\in A}}\oplus h_2, f_1\circ_\ast f_2: a\rightarrow\left\{\begin{array}{cl}
 f_1(a)  & \text{if $\ast\not\in f_1(a)$},    \\ 
@@ -246,7 +231,7 @@ Let us also define $e:\Bbbk X \rightarrow \Bbbk (A\text{-}MHG\times \mathcal{F}_
 
 \begin{lemma}
 \label{opfunc}
-The partial product $\circ_{\ast}$ on $\mathcal{F}_A$ and the morphism $e:X \rightarrow \Bbbk \mathcal{F}_A$ defined by $e_{V}(v) = A\mapsto\{v\}$ if $V=\{v\}$ and $e_V = $ else are such that the diagrams of Proposition \ref{pp} commute and hence define an operad structure on $\mathcal{F}_A$
+The partial product $\circ_{\ast}$ on $\mathcal{F}_A$ and the morphism $e:X \rightarrow \Bbbk \mathcal{F}_A$ defined by $e_{V}(v) = A\mapsto\{v\}$ if $V=\{v\}$ and $e_V = \emptyset$ else are such that the diagrams of Proposition \ref{pp} commute and hence define a set operad structure on $\mathcal{F}_A$
 \end{lemma}
 
 \begin{proof}
@@ -288,7 +273,7 @@ f_2(a)\setminus\{\ast_2\} + f_3(a)  & \text{else.}\end{array}\right. \\
 
 \begin{lemma}
 \label{oppol}
-Let $A=\{a_1,\dots\}$ be a set, $V$, $V_1$ and $V_2$ pairwise disjoint finte sets.
+Let $A=\{a_1,\dots\}$ be a set, $V$, $V_1$ and $V_2$ pairwise disjoint finite sets.
 \begin{itemize}
 \item If $h\in A\text{-}MHG[V_1+\{\ast_1,\ast_2\}]$ and $f_1\in \mathcal{F}_A[V_1]$ and $f_2\in \mathcal{F}_A[V_2]$ then $h|_{\{\ast_{1a}\leftarrow f_1(a)\}_{a\in A}}|_{\{\ast_{2a}\leftarrow f_2(a)\}_{a\in A}} = h|_{\{\ast_{2a}\leftarrow f_2(a)\}_{a\in A}}|_{\{\ast_{1a}\leftarrow f_1(a)\}_{a\in A}}$.
 \item If $h\in A\text{-}MHG[V_1+\{\ast_1\}]$ and $f_1\in \mathcal{F}_A[V_1+\{\ast_2\}]$ and $f_2\in \mathcal{F}_A[V_2]$ then $h|_{\{\ast_{1a}\leftarrow f_1(a)\}_{a\in A}}|_{\{\ast_{2a}\leftarrow f_2(a)\}_{a\in A}} = h|_{\{\ast_{1a}\leftarrow f_1\circ_{\ast_2} f_2(a)\}_{a\in A}}$
@@ -355,9 +340,128 @@ where the third equality comes from Lemma \ref{opfunc} and Lemma \ref{oppol}.
 \end{itemize}
 \end{proof}
 
+\section{Extending PreLie}
+
+\begin{lemma}
+Let $A$ be a set. The set sub-species $\mathcal{F}_A^{max}$ and $\mathcal{F}_A^{sing}$ of $\mathcal{F}_A$ defined by $\mathcal{F}_A^{max}[V] = \{f:a\in A\mapsto V\}$ and $\mathcal{F}_A^{sing}[V] = \{f:A\mapsto \{v\}\,|\,v\in V\}$ are stable under partial product and contains $e_{\{v\}}(v)$ for all singleton $\{v\}$ and are hence set sub-operads of $\mathcal{F}_A$.
+
+Let $A$ and $B$ be two disjoint sets and $\mathcal{F}_A^{sub}$ be a sub-operad of $\mathcal{F}_A$ and $\mathcal{F}_B^{sub}$ be a sub-operad of $\mathcal{F}_B$. Then the set species $\mathcal{F}_A^{sub}\uplus\mathcal{F}_B^{sub}$ defined by $\mathcal{F}_A^{sub}\uplus\mathcal{F}_B^{sub}[V] = \{f\uplus g\,|\, f\in\mathcal{F}_A^{sub}, g\in\mathcal{F}_B^{sub}\}$ , where $f\uplus g: a\in A\sqcup B \mapsto \delta_{a\in A}f(a)+\delta_{a\in B}g(a)$, is a sub-operad of $\mathcal{F}_{A\sqcup B}$.
+\end{lemma}
+
+\begin{proof}
+By definition of $e$ and $\mathcal{F}_A^{max}$ we have that $\mathcal{F}_A^{max}[\{v\}] = \mathcal{F}_A^{sing}[\{V\}] = \{e_{\{v\}}(v)\}$. Let $V_1$ and $V_2$ be two disjoint sets and $\mathcal{F}_A^{max}[V_1+\{\ast\}] =\{f_1\}$ and $\mathcal{F}_A^{max}[V_2] = \{f_2\}$. Then for all $a\in A$, $\ast\in f_1(a)$ and hence $f_1\circ_{\ast} f_2(a) = f_1(a)\setminus\{\ast\} + f_2(a) = V_1 +V_2$. Let $f\in\mathcal{F}_A[V_1+\{\ast\}]$ and $g\in\mathcal{F}_A[V_2]$. Then remarking that for all $a\in A$, $|f\circ_{\ast}g(a)| = |f(a)|$ or $|f\circ_{\ast}g(a)| = |f(a)|-1+|g(a)|$ is enough to conclude that $\mathcal{F}_A^{sing}$ is stable under partial product.
+
+Since $A$ and $B$ are disjoint, the function $a\in A\sqcup B \mapsto \delta_{a\in A}\delta_{a\in B}$ is the null function hence for $V_1$ and $V_2$ two disjoint sets and $f_1\in\mathcal{F}_{A}^{sub}[V_1+\{\ast\}]$, $f_2\in\mathcal{F}_{A}^{sub}[V_2]$, $g_1\in\mathcal{F}_{B}^{sub}[V_1+\{\ast\}]$ and $g_2\in\mathcal{F}_{B}^{sub}[V_2]$ we have that 
+$f_1\uplus g_1\circ_{\ast} f_2\uplus g_2 = f_1\circ_{\ast}f_2\uplus g_1\circ_{\ast}g_2$ which conclude this proof
+\end{proof}
+
+Given a set species $S$ the \textit{pointing of $S$} is the set species $S^{\bullet}$ given by $S^{\bullet}[V] = S[V]\times V$
+
+\begin{definition}[Operad of multi-hypergraphs and oriented multi-hypergraphs]
+The species $\Bbbk MHG$ is isomorphic to $\Bbbk (\{0\}\text{-}MHG\times\mathcal{F}_{\{0\}}^{max})$. This second species being stable under $\circ_{\ast}$ and containing $e(X)$, this gives us an operad structure on $\Bbbk MHG$.
+
+We call \textit{oriented multi-hypergraph} the elements of $\{s,t\}\text{-}MHG$. The ends augmented with $s$ are called \textit{sources} and the one augmented with $t$ \textit{targets}. An \textit{orientation} of a multi-hypergraph is then a $\{s,t\}$-augmentation and we note $MHG_{or}$ this set species.
+The vector species $\Bbbk MHG_{or}$ has an operad structure given by its isomorphism with $\Bbbk \{s,t\}\text{-}MHG\times\mathcal{F}_{s,t}^{max}$. We note $\iota_{MG}: MG \hookrightarrow MG_{or}$ the monomorphism of operads which sends every multigraph on its orientation where all the ends are targets.
+
+The vector species $\Bbbk MHG_{or}^{\bullet}$ has an operad structure given by its isomorphism with $\Bbbk (\{s,t\}\text{-}MHG\times\mathcal{F}_{\{s\}}^{sing}\uplus\mathcal{F}_{\{t\}}^{max})$.
+
+We have analogous definitions for $HG$, $MG$, $G$ and $F$ 
+\end{definition}
+Note that the notion of orientation for a graph differs from the usual one where each edge has exactly one source and one target.
+
+The partial product on $\Bbbk MHG_{or}^{\bullet}$ acts the following way: for $V_1$ and $V_2$ two disjoint sets, $(g_1,v_1)\in MHG^{\bullet}[V_1+\{\ast\}]$ and $(g_2,v_2)\in MHG^{\bullet}[V_2]$ we have:
+$$ (g_1,v_1)\circ_{\ast} (g_2,v_2) = (g_1|_{\ast_s \leftarrow v_2,\, \ast_t \leftarrow\sum V_2}\oplus g_2, v_1|_{\ast \leftarrow v_2}).$$
+
+\vspace{1cm}
+
+Let $S$ one of the set species $HMG$, $HG$, $MG$ or $G$. We note $S_c$ the set subspecies of $S$ of connected elements, $S_{orc}$ the set subspecies of $S_{or}$ of connected elements. We note $T=F_c$ the set species of trees and $T_{or}$ the set species of oriented trees.
+
+Let $V$ be a finite set. Given a tree $t\in T[V]$ and a vertex $r\in V$, we note $t_r\in T_{or}$ the tree with shape $t$ and rooted in $r$ i.e the orientation of $t$ such that for each edge $e$ in $t$ the closest vertex to $v$ in $e$ is a target and the other one a source. $\text{PreLie}$ is an operad structure on $\Bbbk T^{\bullet}$ and we have an operad monomorphism $\iota_{\text{PreLie}}:\text{PreLie} \hookrightarrow \Bbbk T_{or}^{\bullet}$ given by $(t,r)\mapsto (t_r,r)$.
+
+\begin{lemma}
+\label{prelie}
+The monomorphism of vector species given by, for $V$ a finite set: 
+\begin{align*}
+\phi_V: \Bbbk T[V] &\hookrightarrow \text{PreLie}[V] \\
+t &\mapsto \sum_{r\in V} (t,r)
+\end{align*}
+is a morphism of operads.
+\end{lemma}
+
+\begin{proof}
+Let $t\in T[V]$ be a tree and $r,v\in V$. We note $n_t(v)$ the set of neighbours of $v$ in $t$ and $c_{t,r}(v)$ the set of children of $v$ in $t_r$. If $r\not = v$, we also note $p_{t,r}(v)$ the parent of $v$ in $t_r$. Let $V_1$ and $V_2$ be two disjoint sets and $t_1\in T[V_1+\{\ast\}]$ and $t_2\in T[V_2]$. We have:
+\begin{align*}
+\phi_{V_1}(t_1)\circ_{\ast} \phi_{V_2}(t_2) &= \sum_{r_1\in V_1+\{\ast\}} (t_1,r_1) \circ_{\ast} \sum_{r_2\in V_2}(t_2,r_2) \\
+&= \sum_{r_1\in V_1+\{\ast\}}\sum_{r_2\in V_2} (t_1,r_1)\circ_{\ast} (t_2,r_2) \\ 
+&= \sum_{r_1\in V_1}\sum_{r_2\in V_2} \left(t_1\cap V_1^2\oplus p_{t_1,r_1}(\ast)r_2\oplus t_2 \oplus \bigoplus_{v\in c_{t_1,r_1}(\ast)} \left(\sum V_2\right)v, r_1\right) \\
+&\quad + \sum_{r_2\in V_2}\left(t_1\cap V_1^2\oplus t_2 \oplus \bigoplus_{v\in c_{t_1,\ast}(\ast)} \left(\sum V_2\right)v,r_2\right) \\
+&= \sum_{r_1\in V_1} \left(t_1\cap V_1^2\oplus p_{t_1,r_1}(\ast)\left(\sum V_2\right) \oplus t_2 \oplus \bigoplus_{v\in c_{t_1,r_1}(\ast)} \left(\sum V_2\right)v, r_1\right) \\
+&\quad+ \sum_{r_2\in V_2} \left(t_1\cap V_1^2\oplus t_2 \oplus \bigoplus_{v\in c_{t_1,\ast}(\ast)} \left(\sum V_2\right)v,r_2\right) \\
+&= \sum_{r\in V_1+V_2}\left(t_1\cap V_1^2\oplus\bigoplus_{v\in n_{t_1}(\ast)}\left(\sum V_2\right)v\oplus t_2,r\right) \\
+&= \sum_{r\in V_1+V_2} \left(t_1|_{\ast \leftarrow \sum V_2}\oplus t_2,r\right) \\
+&= \phi_{V_1+V_2}(t_1\circ_{\ast} t_2)
+\end{align*}
+\end{proof}
+
+Let $V$ be a set, $g\in MG_c[V]$ a multigraph over $V$, $r\in V$ and $t\in T[V]$ a spaning tree of $g$. Let $\overrightarrow{g}^{(t,r)}\in MG_{orc}$ be the orientation of $g$ defined by $\overrightarrow{g}^{(t,r)}=t_{r}\oplus\iota_{MG}(g\setminus t)$.
+
+We define $\Bbbk \op_2\subset \Bbbk\op_1\subset\Bbbk ST$ three sub-species of $\Bbbk MG_{orc}^{\bullet}$ by, for $V$ a finite set:
+\begin{itemize}
+\item $ST[V]=\{(\overrightarrow{g}^{(t,r)},r)\,|\,g\in MG_c[V], r\in V \text{ and $t$ a spanning tree of $g$}\}$,
+\item $\op_1[V] = \{\sum_{r\in V} \overrightarrow{g}^{(t(r),r)}\,|\, g\in MG_c[V]\text{ and for each $r$, $t(r)$ a spanning tree of $g$}\}$,
+\item $\op_2[V]=\{\overrightarrow{g}^{(t_1,r)}-\overrightarrow{g}^{(t_2,r)}\,|\,g\in MG_c[V],r\in V \text{ and $t_1$ and $t_2$ two spanning trees of $g$}\}$.
+\end{itemize}
+
+\begin{lemma}
+\label{lemmfond}
+We have the following:
+\begin{itemize}
+\item $\Bbbk ST$ is a sub-operad of $\Bbbk MG_{orc}^{\bullet}$ isomorphic to $\text{PreLie}\times \Bbbk MG$.
+\item $\Bbbk \op_1$ is a sub-operad of $\Bbbk ST$.
+\item $\Bbbk\op_2$ is an ideal of $\Bbbk\op_1$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+\begin{itemize}
+\item We have a species isomorphism $\phi:\text{PreLie}\times\Bbbk MG\stackrel{\sim}\longrightarrow\Bbbk ST$ given by $\phi_V((t,r),g) = (\overrightarrow{t\oplus g}^{(t,r)},r)$ and $\phi_V^{-1}((\overrightarrow{g}^{(t,r)},r)) = ((t,r),g\setminus t)$. Since $\iota_{\text{PreLie}}$ and $\iota_{MG}$ are both morphisms of operads, this is a morphism of operad, hence the result.
+\item Let $V_1$ and $V_2$ be two disjoint sets, $g_1\in MG_c[V_1+\{\ast\}]$ and $g_2\in MG_c[V_2]$ be two connected multigraphs and for each $v\in V_1+\{\ast\}$, $t(v)$ a spanning tree of $g_1$ and for each $v\in V_2$, $t(v)$ a spanning tree of $g_2$. We have that:
+\begin{align*}
+\sum_{r_1\in V_1+\{\ast\}} \overrightarrow{g_1}^{(t(r_1),r_1)} &\circ_{\ast} \sum_{r_2\in V_2} \overrightarrow{g_2}^{(t(r_2),r_2)} = \sum_{r_1\in V_1+\{\ast\}}\sum_{r_2\in V_2} \overrightarrow{g_1}^{(t(r_1),r_1)}\circ_{\ast} \overrightarrow{g_2}^{(t(r_2),r_2)} \\
+&= \sum_{r_1\in V_1+\{\ast\}}\sum_{r_2\in V_2} \left(\overrightarrow{g_1}^{(t(r_1),r_1)}|_{\ast_s\leftarrow r_2,\, \ast_t\leftarrow\sum V_2}\oplus \overrightarrow{g_2}^{(t(r_2),r_2)}, r_1|_{\ast\leftarrow r_2}\right)\\
+
+\end{align*}
+Applying $U\times\id$, with $U$ the forgetful functor gives us:
+\begin{align*}
+&\sum_{r_1\in V_1+\{\ast\}}\sum_{r_2\in V_2} (t(r_1)\cap V_1^2\oplus p_{t(r_1),r_1}(\ast)r_2\oplus t(r_2) \oplus \bigoplus_{v\in c_{t(r_1),r_1}(\ast)} v\left(\sum V_2\right) \oplus g_1\setminus t(r_1)\cap V_1^2\\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\bigoplus_{v\in n_{g_1\setminus t(r_1)}(\ast)}v\left(\sum V_2\right)\oplus g_2, r_1|_{\ast\leftarrow r_2})\\
+&= \sum_{r_1\in V_1}\sum_{r_2\in V_2} \left(g_1\cap V_1^2\oplus p_{t(r_1),r_1}(\ast)r_2\oplus g_2 \oplus \bigoplus_{v\in c_{t(r_1),r_1}(\ast)} v\left(\sum V_2\right)\oplus\bigoplus_{v\in n_{g_1\setminus t(r_1)}(\ast)}v\left(\sum V_2\right), r_1\right)\\
+&\qquad\ \,+ \sum_{r_2\in V_2} \left(g_1\cap V_1^2\oplus g_2 \oplus \bigoplus_{v\in c_{t(\ast),\ast}(\ast)} \left(\sum V_2\right)v\oplus\bigoplus_{v\in n_{g_1\setminus t(\ast)}(\ast)}v\left(\sum V_2\right), r_2\right)\\
+&= \sum_{r_1\in V_1} \left(g_1\cap V_1^2\oplus p_{t(r_1),r_1}(\ast)\left(\sum V_2\right)\oplus g_2 \oplus \bigoplus_{v\in c_{t(r_1),r_1}(\ast)} v\left(\sum V_2\right)\oplus\bigoplus_{v\in n_{g_1\setminus t(r_1)}(\ast)}v\left(\sum V_2\right), r_1\right)\\
+&+\, \sum_{r_2\in V_2} \left(g_1\cap V_1^2\oplus g_2 \oplus \bigoplus_{v\in n_{g_1}(\ast)} \left(\sum V_2\right)v, r_2\right)\\
+&=\sum_{r\in V_1+V_2} \left(g_1\cap V_1^2\oplus g_2 \oplus\bigoplus_{v\in n_{g_1}(\ast)} v\left(\sum V_2\right), r\right) \\
+&= \sum_{r\in V_1+V_2} (g_1\circ_{\ast}g_2,r).
+\end{align*}
+To conclude remark that for every finite set $V$, $\Bbbk\op_1[V]$ can be seen as the reciprocal image of $\Bbbk\{\sum_{v\in V}(g,v)\,|\,g\in MG_c[V]\}$ by $U\times\id: \Bbbk ST\rightarrow \Bbbk MG_c^{\bullet}$.
+\item It is easy to see that $\Bbbk\op_2$ is a left ideal of $\Bbbk ST$ and hence of $\Bbbk\op_1$. Let $V_1$ and $V_2$ be two disjoint finite sets, $g_1\in MG_c[V_1+\{\ast\}]$ and $g_2\in MG_c[V_2]$, $r\in V_1$, $t$ a spanning tree of $g_1$ and for every $v\in V_2$, $t(v)$ a spanning tree of $g_2$. Then by recuperating the calculations of the preceding point, we have that $U\times\id(\overrightarrow{g_1}^{(t,r)}\circ_{\ast}\sum_{v\in V_2} \overrightarrow{g_2}^{(t(v),v))}$ is of the form $(g_1\circ_{\ast} g_2, r)$ is $r\not = \ast$ and of the form $\sum_{v\in V_2} (g_1\circ_{\ast} g_2, v)$ else. In both case it doesn't depend on $t$ which concludes this proof.
+\end{itemize}
+\end{proof}
+
+We can see $\text{PreLie}$ as a sub operad of $ST$ by assimilating it to its image by $\iota_{\text{PreLie}}$. The image of the operad morphism $\phi$ of Lemma \ref{prelie} is then $\Bbbk\op_1\cap\text{PreLie}$ and we have that $\Bbbk\op_2\cap\text{PreLie} = \{0\}$ and hence $\Bbbk\op_1\cap\text{PreLie}/\Bbbk\op_2\cap\text{PreLie} = \Bbbk\op_1\cap\text{PreLie}$.
 
 
+\begin{proposition}
+The operad isomorphism $\phi: \Bbbk T \stackrel{\sim}\longrightarrow \Bbbk \op_1\cap\text{PreLie}$ extends to an operad isomorphism $\phi: \Bbbk MG_c \stackrel{\sim}\longrightarrow \Bbbk\op_1/\Bbbk\op_2$  given by, for $V$ a finite set:
+\begin{align*}
+\phi_V: \Bbbk MG_c[V] &\stackrel{\sim}\longrightarrow \Bbbk\op_1/\Bbbk\op_2[V]\\
+g &\longmapsto \sum_{r\in V}\overrightarrow{g}^{(t(r),r)}
+\end{align*}
+where for each $r\in V$, $t(r)$ is a spanning tree of $g$.
+\end{proposition}
 
+\begin{proof}
+It is a direct consequence of the third point and the proof of the second point in Lemma \ref{lemmfond}.
+\end{proof}
 
 
 
